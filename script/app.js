@@ -16,13 +16,9 @@ function connectMQTT() {
     updateSubscribeBox()
 }
 
-
 function onConnect() {
     console.log(`Connected`);
     alert(`Connected`);
-    client.subscribe("coreichamp01");
-    client.subscribe("coreichamp02");
-
 }
 
 function addSubscription() {
@@ -47,11 +43,9 @@ function deleteSubscription(topic) {
         }
 
     }
-    //console.log(`topic: ${topic}, arrived_message_list[0]: ${arrived_message_list[0].topic}`)
     let count = 0
     let len = arrived_message_list.length
     for (let j = 0; j < len; j++) {
-        //console.log(`arrived_message_list[i].topic: ${arrived_message_list[i].topic}`)
         if (arrived_message_list[j - count].topic == topic) {
             arrived_message_list.splice(j - count, 1)
             count++
@@ -59,8 +53,6 @@ function deleteSubscription(topic) {
     }
     updateMessageBox()
     updateSubscribeBox();
-
-
 }
 
 function clientPublish() {
@@ -83,7 +75,6 @@ function onConnectionLost(responseObject) {
 
 function onMessageArrived(arrived_message) {
     console.log(`messageArrived topic:${arrived_message.destinationName}, message: "${arrived_message.payloadString}"`)
-    //console.log(messages_box.innerHTML)
 
     let currentdate = new Date();
     let date_time = currentdate.getDate() + "/"
@@ -103,8 +94,6 @@ function onMessageArrived(arrived_message) {
     if (arrived_message_list.length > 0) {
         updateMessageBox()
     }
-
-
 }
 
 function updateMessageBox() {
@@ -129,8 +118,3 @@ function updateSubscribeBox() {
     }
     document.getElementById('subscribe_box').innerHTML = process_html
 }
-
-
-
-
-
