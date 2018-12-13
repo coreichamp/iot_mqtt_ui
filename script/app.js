@@ -1,8 +1,8 @@
 const host = "broker.mqttdashboard.com"
 const port = 8000
 const client_id = "champ_test"
-const arrived_message_list = []
-const subscribe_list = []
+let arrived_message_list = []
+let subscribe_list = []
 
 function connectMQTT() {
     console.log(`Connecting to host: "${host}", port ${port}, client_id: ${client_id}`)
@@ -10,6 +10,10 @@ function connectMQTT() {
     client.onConnectionLost = onConnectionLost;
     client.onMessageArrived = onMessageArrived;
     client.connect({ onSuccess: onConnect });
+    arrived_message_list = []
+    subscribe_list = []
+    updateMessageBox()
+    updateSubscribeBox()
 }
 
 
@@ -29,14 +33,7 @@ function addSubscription() {
 
         subscribe_list.push(`${subscribe_topic}`)
         if (subscribe_list.length > 0) {
-            let process_html = ``
-            for (let i = subscribe_list.length - 1; i >= 0; i--) {
-                process_html += `<div class="card" id="mess-card">
-                <span onclick="deleteSubscription('${subscribe_list[i]}')">X</span> 
-                <span>  ${subscribe_list[i]}</span>
-                </div>`
-            }
-            document.getElementById('subscribe_box').innerHTML = process_html
+            updateSubscribeBox();
         }
     }
 }
@@ -48,15 +45,22 @@ function deleteSubscription(topic) {
         if (subscribe_list[i] == topic) {
             subscribe_list.splice(i, 1)
         }
+
     }
-    let process_html = ``
-    for (let i = subscribe_list.length - 1; i >= 0; i--) {
-        process_html += `<div class="card" id="mess-card">
-                <span onclick="deleteSubscription('${subscribe_list[i]}')">X</span> 
-                <span>  ${subscribe_list[i]}</span>
-                </div>`
+    //console.log(`topic: ${topic}, arrived_message_list[0]: ${arrived_message_list[0].topic}`)
+    let count = 0
+    let len = arrived_message_list.length
+    for (let j = 0; j < len; j++) {
+        //console.log(`arrived_message_list[i].topic: ${arrived_message_list[i].topic}`)
+        if (arrived_message_list[j - count].topic == topic) {
+            arrived_message_list.splice(j - count, 1)
+            count++
+        }
     }
-    document.getElementById('subscribe_box').innerHTML = process_html
+    updateMessageBox()
+    updateSubscribeBox();
+
+
 }
 
 function clientPublish() {
@@ -81,15 +85,15 @@ function onMessageArrived(arrived_message) {
     console.log(`messageArrived topic:${arrived_message.destinationName}, message: "${arrived_message.payloadString}"`)
     //console.log(messages_box.innerHTML)
 
-    var currentdate = new Date();
-    var date_time = currentdate.getDate() + "/"
+    let currentdate = new Date();
+    let date_time = currentdate.getDate() + "/"
         + (currentdate.getMonth() + 1) + "/"
         + currentdate.getFullYear() + " "
         + currentdate.getHours() + ":"
         + currentdate.getMinutes() + ":"
         + currentdate.getSeconds();
 
-    const message = {
+    let message = {
         topic: arrived_message.destinationName,
         message: arrived_message.payloadString,
         date_time: date_time
@@ -97,20 +101,33 @@ function onMessageArrived(arrived_message) {
     arrived_message_list.push(message)
 
     if (arrived_message_list.length > 0) {
-        let process_html = ``
-        for (let i = arrived_message_list.length - 1; i >= 0; i--) {
-            process_html += `<div class="card" id="mess-card">
+        updateMessageBox()
+    }
+
+
+}
+
+function updateMessageBox() {
+    let process_html = ``
+    for (let i = arrived_message_list.length - 1; i >= 0; i--) {
+        process_html += `<div class="card" id="mess-card">
             <p>topic: ${arrived_message_list[i].topic}</p>
             <p>message: ${arrived_message_list[i].message}</p>
             <p>date: ${arrived_message_list[i].date_time}</p>
             </div>`
-        }
-        document.getElementById('messages_box').innerHTML = process_html
-
-
     }
+    document.getElementById('messages_box').innerHTML = process_html
+}
 
-
+function updateSubscribeBox() {
+    let process_html = ``
+    for (let i = subscribe_list.length - 1; i >= 0; i--) {
+        process_html += `<div class="card" id="mess-card">
+                <span onclick="deleteSubscription('${subscribe_list[i]}')">X</span> 
+                <span>  ${subscribe_list[i]}</span>
+                </div>`
+    }
+    document.getElementById('subscribe_box').innerHTML = process_html
 }
 
 
