@@ -1,0 +1,32 @@
+#Connectionbox{
+    background-color: #eeeeee; 
+    padding : 1rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+#Publishbox{
+    background-color: #eeeeee;
+    padding: 1rem;
+    margin-bottom: 1rem;
+
+}
+#Messagesbox{
+    background-color: #eeeeee;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+#Subscriptionsbox{
+    background-color: #eeeeee;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+#con-card{
+    padding: 1rem;
+
+}
+#pub-card{
+    padding: 1rem;
+}
+#mess-card{
+    padding: 1rem;
+}
