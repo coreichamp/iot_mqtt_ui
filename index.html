@@ -29,7 +29,6 @@
   <div class="container" id="Connectionbox">
       <h2>Connection</h2>
     <div class="card" id="con-card">
-        
         <div class="row">
           <div class="input-field col s6">
             <input value="" id="host" type="text" class="validate">
@@ -39,55 +38,72 @@
             <input value="" id="port" type="text" class="validate">
             <label class="active" for="port">port</label>
           </div>
+          <div class="input-field col s2">
+            <input value="" id="clientld" type="text" class="validate">
+            <label class="active" for="clientld">clientld</label>
+          </div>
           <a class="waves-effect waves-light btn-small">Connect</a>
+        </div>
+        <div class="row">
+          <div class="input-field col s4">
+            <input value="" id="username" type="text" class="validate">
+            <label class="active" for="username">Username</label>
+          </div>
+          <div class="input-field col s2">
+            <input value="" id="password" type="password" class="validate">
+            <label class="active" for="password">password</label>
+          </div>
         </div>
 
     </div>
     
 
   </div>
-  <!-- Connections-->
-  <div class="row">
-    <div class="col s8">
-      <!--Publish-->
-      <div class="container" id="Publishbox">
-          <h2>Publish</h2>
-        <div class="card" id="pub-card">
-            <div class="row">
-                <div class="input-field col s3">
-                  <input value="" id="topic" type="text" class="validate">
-                  <label class="active" for="topic">Topic</label>
-                </div>
-                <a class="waves-effect waves-light btn-small">Publish</a>
-      
-              </div>
+  <!-- Connection-->
+
+  <div class="container" id="midbox">
+    <div class="row">
+      <div class="col s7">
+        <!--Publish-->
+        <div class="container" id="Publishbox">
+            <h2>Publish</h2>
+          <div class="card" id="pub-card">
               <div class="row">
-                <div class="input-field col s12">
-                  <textarea id="publish-messages" class="materialize-textarea"></textarea>
-                  <label for="publish-messages">Messages</label>
-                </div>
-              </div>
-
-        </div>
+                  <div class="input-field col s3">
+                    <input value="" id="topic" type="text" class="validate">
+                    <label class="active" for="topic">Topic</label>
+                  </div>
+                  <a class="waves-effect waves-light btn-small">Publish</a>
         
-       
-
+                </div>
+                <div class="row">
+                  <div class="input-field col s12">
+                    <textarea id="publish-messages" class="materialize-textarea"></textarea>
+                    <label for="publish-messages">Messages</label>
+                  </div>
+                </div>
+  
+          </div>
+          
+         
+  
+        </div>
+        <!--Publish-->
       </div>
-      <!--Publish-->
-    </div>
-    <div class="col s4">
-      <!--Subscription-->
-      <div class="container" id="Subscriptionsbox">
-        <h3>Subscription</h3>
-        <a class="waves-effect waves-light btn">Add New Topic Subscription</a>
-
+      <div class="col s5">
+        <!--Subscription-->
+        <div class="container" id="Subscriptionsbox">
+          <h3>Subscription</h3>
+          <a class="waves-effect waves-light btn">Add New Topic Subscription</a>
+        </div>
+  
+        <!--Subscription-->
       </div>
-
-      <!--Subscription-->
+  
     </div>
-
+    </div>
   </div>
-  </div>
+  
 
 
   <!--Messages-->
