@@ -21,23 +21,42 @@ function onConnect() {
 
 }
 
-function addSubscribe() {
+function addSubscription() {
     const subscribe_topic = $('#subscribe_topic').val()
     if (subscribe_topic && !subscribe_list.includes(subscribe_topic)) {
         client.subscribe(subscribe_topic);
-        console.log(`addSubscribe topic: ${subscribe_topic}`)
+        console.log(`addSubscription topic: ${subscribe_topic}`)
 
         subscribe_list.push(`${subscribe_topic}`)
         if (subscribe_list.length > 0) {
             let process_html = ``
             for (let i = subscribe_list.length - 1; i >= 0; i--) {
                 process_html += `<div class="card" id="mess-card">
-            <p>${subscribe_list[i]}</p>
-            </div>`
+                <span onclick="deleteSubscription('${subscribe_list[i]}')">X</span> 
+                <span>  ${subscribe_list[i]}</span>
+                </div>`
             }
             document.getElementById('subscribe_box').innerHTML = process_html
         }
     }
+}
+
+function deleteSubscription(topic) {
+    console.log(`deleteSubscription topic: ${topic}`)
+    client.unsubscribe(topic)
+    for (let i = 0; i < subscribe_list.length; i++) {
+        if (subscribe_list[i] == topic) {
+            subscribe_list.splice(i, 1)
+        }
+    }
+    let process_html = ``
+    for (let i = subscribe_list.length - 1; i >= 0; i--) {
+        process_html += `<div class="card" id="mess-card">
+                <span onclick="deleteSubscription('${subscribe_list[i]}')">X</span> 
+                <span>  ${subscribe_list[i]}</span>
+                </div>`
+    }
+    document.getElementById('subscribe_box').innerHTML = process_html
 }
 
 function clientPublish() {
