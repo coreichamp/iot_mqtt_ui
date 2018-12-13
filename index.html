@@ -6,10 +6,9 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <!-- Compiled and minified CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-  <link type="text/css" rel="stylesheet" href="style.css" <!-- Compiled and minified JavaScript -->
+  <link type="text/css" rel="stylesheet" href="style/style.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
-  <!--Let browser know website is optimized for mobile-->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </head>
 
@@ -27,23 +26,23 @@
   </div>
   <!-- Connection-->
   <div class="container" id="Connectionbox">
-      <h2>Connection</h2>
+    <h2>Connection</h2>
     <div class="card" id="con-card">
-        
-        <div class="row">
-          <div class="input-field col s6">
-            <input value="" id="host" type="text" class="validate">
-            <label class="active" for="host">Host</label>
-          </div>
-          <div class="input-field col s2">
-            <input value="" id="port" type="text" class="validate">
-            <label class="active" for="port">port</label>
-          </div>
-          <a class="waves-effect waves-light btn-small">Connect</a>
+
+      <div class="row">
+        <div class="input-field col s6">
+          <input value="" id="host" type="text" class="validate">
+          <label class="active" for="host">Host</label>
         </div>
+        <div class="input-field col s2">
+          <input value="" id="port" type="text" class="validate">
+          <label class="active" for="port">port</label>
+        </div>
+        <a class="waves-effect waves-light btn-small">Connect</a>
+      </div>
 
     </div>
-    
+
 
   </div>
   <!-- Connection-->
@@ -51,26 +50,26 @@
     <div class="col s8">
       <!--Publish-->
       <div class="container" id="Publishbox">
-          <h2>Publish</h2>
+        <h2>Publish</h2>
         <div class="card" id="pub-card">
-            <div class="row">
-                <div class="input-field col s3">
-                  <input value="" id="topic" type="text" class="validate">
-                  <label class="active" for="topic">Topic</label>
-                </div>
-                <a class="waves-effect waves-light btn-small">Publish</a>
-      
-              </div>
-              <div class="row">
-                <div class="input-field col s12">
-                  <textarea id="publish-messages" class="materialize-textarea"></textarea>
-                  <label for="publish-messages">Messages</label>
-                </div>
-              </div>
+          <div class="row">
+            <div class="input-field col s3">
+              <input value="" id="topic" type="text" class="validate">
+              <label class="active" for="topic">Topic</label>
+            </div>
+            <a class="waves-effect waves-light btn-small">Publish</a>
+
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <textarea id="publish-messages" class="materialize-textarea"></textarea>
+              <label for="publish-messages">Messages</label>
+            </div>
+          </div>
 
         </div>
-        
-       
+
+
 
       </div>
       <!--Publish-->
@@ -100,7 +99,9 @@
   <!--Messages-->
 
 
-
+<script src="script/mqttws31.js"></script>
+<script src="script/app.js"></script>
+<script src="script/index.js"></script>
 </body>
 
 </html>
