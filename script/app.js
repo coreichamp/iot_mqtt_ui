@@ -15,6 +15,7 @@ function connectMQTT() {
 
 function onConnect() {
     console.log(`Connected`);
+    alert(`Connected`);
     client.subscribe("coreichamp01");
     client.subscribe("coreichamp02");
 
