@@ -43,8 +43,10 @@
           <input value="" id="client_id" type="text" class="validate">
           <label class="active" for="clientld">clientld</label>
         </div>
-
-        <button class="waves-effect waves-light btn-small" onclick="connectMQTT()">Connect</button>
+        <div class="col s2">
+          <button class="waves-effect waves-light btn-small" onclick="connectMQTT()">Connect</button>
+        </div>
+       
       </div>
       <div class="row">
         <div class="input-field col s4">
@@ -71,11 +73,14 @@
           <h2>Publish</h2>
           <div class="card" id="pub-card">
             <div class="row">
-              <div class="input-field col s6">
+              <div class="input-field col s8">
                 <input id="publish_topic" type="text" class="validate">
                 <label class="active" for="publish_topic">Topic</label>
               </div>
-              <button class="waves-effect waves-light btn-small" onclick="clientPublish()">Publish</button>
+              <div class="col s4">
+                <button class="waves-effect waves-light btn-small" onclick="clientPublish()">Publish</button>
+              </div>
+              
 
             </div>
             <div class="row">
