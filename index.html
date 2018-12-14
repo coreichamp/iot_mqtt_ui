@@ -32,11 +32,13 @@
     <div class="card" id="con-card">
       <div class="row">
         <div class="input-field col s6">
-          <input value="broker.mqttdashboard.com" id="host" type="text" class="validate">
+          <!-- <input value="broker.mqttdashboard.com" id="host" type="text" class="validate"> -->
+          <input id="host" type="text" class="validate">
           <label class="active" for="host">Host</label>
         </div>
         <div class="input-field col s2">
-          <input value="8000" id="port" type="text" class="validate">
+          <!-- <input value="8000" id="port" type="text" class="validate"> -->
+          <input id="port" type="text" class="validate">
           <label class="active" for="port">port</label>
         </div>
         <div class="input-field col s2">
@@ -46,9 +48,9 @@
         <div class="col s2">
           <button class="waves-effect waves-light btn-small" onclick="connectMQTT()">Connect</button>
         </div>
-       
+
       </div>
-      <div class="row">
+      <!-- <div class="row">
         <div class="input-field col s4">
           <input value="" id="username" type="text" class="validate">
           <label class="active" for="username">Username</label>
@@ -57,7 +59,7 @@
           <input value="" id="password" type="password" class="validate">
           <label class="active" for="password">password</label>
         </div>
-      </div>
+      </div> -->
 
     </div>
 
@@ -80,7 +82,7 @@
               <div class="col s4">
                 <button class="waves-effect waves-light btn-small" onclick="clientPublish()">Publish</button>
               </div>
-              
+
 
             </div>
             <div class="row">
@@ -105,7 +107,7 @@
             <input id="subscribe_topic" type="text" class="validate">
             <label class="active" for="subscribe_topic">Topic</label>
           </div>
-         
+
           <button class="waves-effect waves-light btn" onclick="addSubscription()">Add New Topic Subscription</button>
           <div id="subscribe_box"></div>
         </div>
