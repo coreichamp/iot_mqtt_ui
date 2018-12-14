@@ -8,6 +8,8 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
   <link type="text/css" rel="stylesheet" href="style/style.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </head>
@@ -17,7 +19,7 @@
   <div class="navbar-fixed">
     <nav>
       <div class="nav-wrapper">
-        <a href="#!" class="brand-logo">IT MQTT</a>
+        <a href="#!" class="brand-logo center">IT MQTT</a>
         <ul class="right hide-on-med-and-down">
 
         </ul>
@@ -28,79 +30,98 @@
   <div class="container" id="Connectionbox">
     <h2>Connection</h2>
     <div class="card" id="con-card">
-
       <div class="row">
         <div class="input-field col s6">
-          <input value="" id="host" type="text" class="validate">
+          <input value="broker.mqttdashboard.com" id="host" type="text" class="validate">
           <label class="active" for="host">Host</label>
         </div>
         <div class="input-field col s2">
-          <input value="" id="port" type="text" class="validate">
+          <input value="8000" id="port" type="text" class="validate">
           <label class="active" for="port">port</label>
         </div>
-        <a class="waves-effect waves-light btn-small">Connect</a>
+        <div class="input-field col s2">
+          <input value="" id="client_id" type="text" class="validate">
+          <label class="active" for="clientld">clientld</label>
+        </div>
+
+        <button class="waves-effect waves-light btn-small" onclick="connectMQTT()">Connect</button>
+      </div>
+      <div class="row">
+        <div class="input-field col s4">
+          <input value="" id="username" type="text" class="validate">
+          <label class="active" for="username">Username</label>
+        </div>
+        <div class="input-field col s2">
+          <input value="" id="password" type="password" class="validate">
+          <label class="active" for="password">password</label>
+        </div>
       </div>
 
     </div>
 
 
   </div>
-  <!-- Connections-->
-  <div class="row">
-    <div class="col s8">
-      <!--Publish-->
-      <div class="container" id="Publishbox">
-        <h2>Publish</h2>
-        <div class="card" id="pub-card">
-          <div class="row">
-            <div class="input-field col s3">
-              <input value="" id="topic" type="text" class="validate">
-              <label class="active" for="topic">Topic</label>
+  <!-- Connection-->
+
+  <div class="container" id="midbox">
+    <div class="row">
+      <div class="col s7">
+        <!--Publish-->
+        <div class="container" id="Publishbox">
+          <h2>Publish</h2>
+          <div class="card" id="pub-card">
+            <div class="row">
+              <div class="input-field col s6">
+                <input id="publish_topic" type="text" class="validate">
+                <label class="active" for="publish_topic">Topic</label>
+              </div>
+              <button class="waves-effect waves-light btn-small" onclick="clientPublish()">Publish</button>
+
             </div>
-            <a class="waves-effect waves-light btn-small">Publish</a>
+            <div class="row">
+              <div class="input-field col s12">
+                <textarea id="publish_message" class="materialize-textarea"></textarea>
+                <label for="publish_message">Messages</label>
+              </div>
+            </div>
 
           </div>
-          <div class="row">
-            <div class="input-field col s12">
-              <textarea id="publish-messages" class="materialize-textarea"></textarea>
-              <label for="publish-messages">Messages</label>
-            </div>
-          </div>
+
+
 
         </div>
-
-
-
+        <!--Publish-->
       </div>
       <div class="col s5">
         <!--Subscription-->
         <div class="container" id="Subscriptionsbox">
           <h3>Subscription</h3>
-          <a class="waves-effect waves-light btn">Add New Topic Subscription</a>
+          <div class="input-field col s12">
+            <input id="subscribe_topic" type="text" class="validate">
+            <label class="active" for="subscribe_topic">Topic</label>
+          </div>
+         
+          <button class="waves-effect waves-light btn" onclick="addSubscription()">Add New Topic Subscription</button>
+          <div id="subscribe_box"></div>
         </div>
-  
+
         <!--Subscription-->
       </div>
-  
-    </div>
     </div>
   </div>
-  
+  </div>
+
 
 
   <!--Messages-->
-  <div class="container" id="Messagesbox">
+  <div class="container" id=Messagesbox>
     <h3>Messages</h3>
-    <div class="card" id="mess-card">
-      <p>test text</p>
-    </div>
+    <div id="messages_box"></div>
   </div>
   <!--Messages-->
 
-
-<script src="script/mqttws31.js"></script>
-<script src="script/app.js"></script>
-<script src="script/index.js"></script>
+  <script src="script/mqttws31.js"></script>
+  <script src="script/app.js"></script>
 </body>
 
 </html>

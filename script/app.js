@@ -58,11 +58,14 @@ function deleteSubscription(topic) {
 function clientPublish() {
     const publish_topic = $('#publish_topic').val()
     const publish_message = $('#publish_message').val()
+    M.toast({html: 'Publish DONE !'})
     if (publish_topic && publish_message) {
         message = new Paho.MQTT.Message(publish_message);
         message.destinationName = publish_topic;
         client.send(message);
         console.log(`clientPublish topic: ${publish_topic}, message: ${publish_message}`)
+        
+ 
     }
 }
 
@@ -100,8 +103,8 @@ function updateMessageBox() {
     let process_html = ``
     for (let i = arrived_message_list.length - 1; i >= 0; i--) {
         process_html += `<div class="card" id="mess-card">
-            <p>topic: ${arrived_message_list[i].topic}</p>
-            <p>message: ${arrived_message_list[i].message}</p>
+            <h6>topic: ${arrived_message_list[i].topic}</h6>
+            <h4>message: ${arrived_message_list[i].message}</h4>
             <p>date: ${arrived_message_list[i].date_time}</p>
             </div>`
     }
@@ -112,7 +115,7 @@ function updateSubscribeBox() {
     let process_html = ``
     for (let i = subscribe_list.length - 1; i >= 0; i--) {
         process_html += `<div class="card" id="mess-card">
-                <span onclick="deleteSubscription('${subscribe_list[i]}')">X</span> 
+                <span onclick="deleteSubscription('${subscribe_list[i]}')"><b>X</b></span> 
                 <span>  ${subscribe_list[i]}</span>
                 </div>`
     }

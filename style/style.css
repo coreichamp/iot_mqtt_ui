@@ -7,7 +7,11 @@
 #Publishbox{
     background-color: #eeeeee;
     padding: 1rem;
-    margin-bottom: 1rem;
+    margin-left: -0.75rem;
+    margin-right: 0em;
+    width: 100%;
+    
+    
 
 }
 #Messagesbox{
@@ -18,7 +22,10 @@
 #Subscriptionsbox{
     background-color: #eeeeee;
     padding: 1rem;
-    margin-bottom: 1rem;
+    margin-right: -0.75rem;
+    
+    width: 100%;
+    
 }
 #con-card{
     padding: 1rem;
@@ -32,6 +39,9 @@
 }
 #midbox{
     padding: 0;
-    background-color: aquamarine;
+   
     
+}
+#mess-card{
+
 }
