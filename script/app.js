@@ -14,7 +14,7 @@ function connectMQTT() {
     console.log(`Connecting to host: "${mqtt_host}", port ${mqtt_port}, client_id: ${client_id}`)
     client = new Paho.MQTT.Client(mqtt_host, mqtt_port, client_id)
     client.onConnectionLost = onConnectionLost;
-    client.onMessageAsrrived = onMessageArrived;
+    client.onMessageArrived = onMessageArrived;
     client.connect({ onSuccess: onConnect });
 
     arrived_message_list = []
