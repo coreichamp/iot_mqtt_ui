@@ -1,15 +1,22 @@
 const host = "broker.mqttdashboard.com"
 const port = 8000
-const client_id = "champ_test"
+
 let arrived_message_list = []
 let subscribe_list = []
 
+initPage()
+
 function connectMQTT() {
-    console.log(`Connecting to host: "${host}", port ${port}, client_id: ${client_id}`)
-    client = new Paho.MQTT.Client(host, port, client_id)
+    let mqtt_host = $('#host').val()
+    let mqtt_port = parseInt($('#port').val())
+    let client_id = $('#client_id').val()
+
+    console.log(`Connecting to host: "${mqtt_host}", port ${mqtt_port}, client_id: ${client_id}`)
+    client = new Paho.MQTT.Client(mqtt_host, mqtt_port, client_id)
     client.onConnectionLost = onConnectionLost;
-    client.onMessageArrived = onMessageArrived;
+    client.onMessageAsrrived = onMessageArrived;
     client.connect({ onSuccess: onConnect });
+
     arrived_message_list = []
     subscribe_list = []
     updateMessageBox()
@@ -18,7 +25,7 @@ function connectMQTT() {
 
 function onConnect() {
     console.log(`Connected`);
-    alert(`Connected`);
+    M.toast({ html: 'Connected' })
 }
 
 function addSubscription() {
@@ -58,14 +65,15 @@ function deleteSubscription(topic) {
 function clientPublish() {
     const publish_topic = $('#publish_topic').val()
     const publish_message = $('#publish_message').val()
-    M.toast({html: 'Publish DONE !'})
+
     if (publish_topic && publish_message) {
         message = new Paho.MQTT.Message(publish_message);
         message.destinationName = publish_topic;
         client.send(message);
         console.log(`clientPublish topic: ${publish_topic}, message: ${publish_message}`)
-        
- 
+        M.toast({ html: 'Publish DONE !' })
+
+
     }
 }
 
@@ -120,4 +128,20 @@ function updateSubscribeBox() {
                 </div>`
     }
     document.getElementById('subscribe_box').innerHTML = process_html
+}
+
+function randomClientID() {
+    let client_id = "client-"
+    let seed = "abcdefghijklmnopqrstuvwxyz0123456789"
+    for (let i = 0; i < 5; i++) {
+        client_id += seed.charAt(Math.floor(Math.random() * seed.length))
+    }
+    return client_id;
+}
+
+function initPage() {
+    const client_id = randomClientID()
+    document.getElementById('host').value = host
+    document.getElementById('port').value = port
+    document.getElementById('client_id').value = client_id
 }
