@@ -111,9 +111,9 @@ function updateMessageBox() {
     let process_html = ``
     for (let i = arrived_message_list.length - 1; i >= 0; i--) {
         process_html += `<div class="card" id="mess-card">
-            <h6>topic: ${arrived_message_list[i].topic}</h6>
-            <h4>message: ${arrived_message_list[i].message}</h4>
-            <p>date: ${arrived_message_list[i].date_time}</p>
+           
+            <h5> <b>${arrived_message_list[i].message}</b></h5>
+            <p> ${arrived_message_list[i].date_time} &nbsp; &nbsp; Topic : ${arrived_message_list[i].topic} </p>
             </div>`
     }
     document.getElementById('messages_box').innerHTML = process_html
