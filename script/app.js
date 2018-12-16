@@ -140,7 +140,7 @@ function randomClientID() {
 }
 
 function initPage() {
-    const client_id = randomClientID()
+    let client_id = randomClientID()
     document.getElementById('host').value = host
     document.getElementById('port').value = port
     document.getElementById('client_id').value = client_id
