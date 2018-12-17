@@ -1,5 +1,5 @@
-const host = "broker.mqttdashboard.com"
-const port = 8000
+const host = "161.246.38.104"
+const port = 8889
 
 let arrived_message_list = []
 let subscribe_list = []
